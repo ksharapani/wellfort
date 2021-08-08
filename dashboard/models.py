@@ -7,6 +7,7 @@ class User(models.Model):
 
 
 class Message(models.Model):
+    message_id = models.IntegerField()
     message = models.CharField(max_length=512)
 
 
@@ -17,4 +18,3 @@ class Queue(models.Model):
     display_message = models.ForeignKey(Message, on_delete=models.CASCADE)
     displayed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_created=True)
-    scheduled_at = models.DateTimeField(auto_created=True)
