@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# EXECUTION:
+# 'bash deployment_scripts/deploy.sh'
+
+git pull
+
+sudo mkdir -p logs
+
+pip install -r requirements.txt
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+supervisorctl restart all
