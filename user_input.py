@@ -1,6 +1,5 @@
-
-
 from time import sleep
+from datetime import datetime
 import sqlite3
 
 
@@ -12,14 +11,17 @@ con = sqlite3.connect('db.sqlite3')
 
 while True:
     if button_2.wait_for_press():
-        users = con.execute('SELECT id FROM dashboard_user where pin_number=2')
-        messages = con.execute('SELECT id FROM dashboard_message where message_id=1')
+        user = None
+        message = None
+        for row in con.execute('SELECT id FROM dashboard_user where pin_number=2'):
+            user = row[0]
+        for row in con.execute('SELECT id FROM dashboard_message where message_id=1'):
+            message = row[0]
 
-        # messages = con.execute('INSERT INTO dashboard_queue(clicked_user, display_message, ) VALUES ({}, {]);'.
-        #                        format(users[0]))
-
-
-            # print(row[0])
+        print('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, displayed) VALUES '
+              '("{}", {}, {}, 0);'.format(datetime.now(), user, message))
+        messages = con.execute('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, '
+                               'displayed) VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, message))
         print('clicked')
 
     sleep(1)
