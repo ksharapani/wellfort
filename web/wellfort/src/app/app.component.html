@@ -1,0 +1,4 @@
+<div *ngIf="notification!=undefined" >
+  <p *ngIf="notification.status=='successfull'">Congratuation {{notification.user}} {{notification.display_message}} </p>
+  <p *ngIf="notification.status=='failed'">Waiting.... </p>
+</div>
