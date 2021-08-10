@@ -19,7 +19,7 @@ export class AppComponent {
     
     interval(this.timeInterval).subscribe(x =>{
       this.http.get("http://localhost:8000/dashboard/test").subscribe((res)=>{this.notification=res;
-      console.log("notificaton",this.notification)
+ 
     })
     });
   }

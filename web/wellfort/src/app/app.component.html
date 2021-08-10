@@ -1,4 +1,14 @@
-<div *ngIf="notification!=undefined" >
-  <p *ngIf="notification.status=='successfull'">Congratuation {{notification.user}} {{notification.display_message}} </p>
-  <p *ngIf="notification.status=='failed'">Waiting.... </p>
+<div *ngIf="notification!=undefined" style="align-items: center;">
+  <div *ngIf="notification.status=='successful'" class="content-div">
+    <p  class="content-para">{{notification.display_message}} </p>
+    <p  class="content-para">{{notification.user}} </p>
+  </div>
+  <div *ngIf="notification.status=='failed'">
+  
+    <img class="img-div"  src="../assets/imgs/wellfort.jpeg">
+  </div>
+  
+</div>
+<div *ngIf="notification==undefined" style="align-items: center;">
+  <img class="img-div" src="../assets/imgs/wellfort.jpeg">
 </div>
