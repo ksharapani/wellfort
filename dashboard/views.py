@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.db.models import Count, F
+from django.utils.timezone import datetime
 
 from dashboard.models import Queue
 
@@ -7,16 +9,18 @@ from dashboard.models import Queue
 class Dashboard(APIView):
 
     def get(self, request):
-        queue_data = Queue.objects.all().filter(displayed=False).order_by('created_at')
+        today = datetime.today()
+        data = Queue.objects.filter(displayed=False).order_by('created_at').first()
 
-        output = {'status': 'failed', 'user': None, 'display_message': None}
-        for queue_id, data in enumerate(queue_data):
-            if queue_id == 0:
-                output = {'user': data.clicked_user.name, 'status': 'successful',
-                          'display_message': data.display_message.message}
-                data.displayed = True
-                data.save()
+        queue_data = Queue.objects.filter(created_at__year=today.year, created_at__month=today.month,
+                                          created_at__day=today.day).values(user=F('clicked_user__name')).\
+            annotate(count=Count('clicked_user')).order_by()
 
-            print(data)
+        output = {'status': 'failed', 'user': None, 'display_message': None, 'data': queue_data}
+        if data:
+            output = {'user': data.clicked_user.name, 'status': 'successful',
+                      'display_message': data.display_message.message, 'data': queue_data}
+            data.displayed = True
+            data.save()
 
         return Response(output)
