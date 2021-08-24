@@ -19,6 +19,12 @@ export class AppComponent {
     
     interval(this.timeInterval).subscribe(x =>{
       this.http.get("http://localhost:8000/dashboard/test").subscribe((res)=>{this.notification=res;
+      if(this.notification.audio!=null){
+        let audio = new Audio();
+        audio.src = "http://localhost:800/"+this.notification.audio;
+        audio.load();
+        audio.play();
+      }
  
     })
     });
