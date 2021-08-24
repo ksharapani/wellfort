@@ -1,1 +1,0 @@
-body{background-color:#2b2c34}.animated-text{font-family:VT323,monospace,sans-serif;text-shadow:0 0 1px #fff;position:fixed;bottom:-100vh;-webkit-user-select:none;user-select:none;animation-name:float-animation;animation-timing-function:ease-in-out}@keyframes float-animation{0%{top:100vh;opacity:0}25%{opacity:1}50%{opacity:1}75%{opacity:.75}to{top:0;opacity:0}}
