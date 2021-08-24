@@ -16,10 +16,11 @@ class Dashboard(APIView):
                                           created_at__day=today.day).values(user=F('clicked_user__name')).\
             annotate(count=Count('clicked_user')).order_by()
 
-        output = {'status': 'failed', 'user': None, 'display_message': None, 'data': queue_data}
+        output = {'status': 'failed', 'user': None, 'display_message': None, 'audio': None, 'data': queue_data}
         if data:
             output = {'user': data.clicked_user.name, 'status': 'successful',
-                      'display_message': data.display_message.message, 'data': queue_data}
+                      'display_message': data.display_message.message, 'audio': data.display_message.audio.url,
+                      'data': queue_data}
             data.displayed = True
             data.save()
 

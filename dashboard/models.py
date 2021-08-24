@@ -9,6 +9,7 @@ class User(models.Model):
 class Message(models.Model):
     message_id = models.IntegerField()
     message = models.CharField(max_length=512)
+    audio = models.FileField(upload_to='static/audio/', blank=True)
 
 
 class Queue(models.Model):

@@ -1,14 +1,34 @@
-<div *ngIf="notification!=undefined" style="align-items: center;">
-  <div *ngIf="notification.status=='successful'" class="content-div">
-    <p  class="content-para">{{notification.display_message}} </p>
-    <p  class="content-para">{{notification.user}} </p>
-  </div>
-  <div *ngIf="notification.status=='failed'">
-  
-    <img class="img-div"  src="../assets/imgs/wellfort.jpeg">
-  </div>
-  
+<div bubblingText [position]="'right'"></div>
+<div bubblingText [position]="'left'"></div>
+<div style="align-items: center;">
+  <img class="img-div" src="../assets/imgs/wellfort.png">
 </div>
-<div *ngIf="notification==undefined" style="align-items: center;">
-  <img class="img-div" src="../assets/imgs/wellfort.jpeg">
+<div  style="width: 100%;display: grid;grid-template-columns: auto auto auto">
+  <div></div>
+  <div >
+    <div *ngIf="notification!=undefined" style="align-items: center;">
+      <div *ngIf="notification.status=='successful'" class="content-div">
+        <p  class="content-para">{{notification.display_message}} </p>
+        <p  class="content-para">{{notification.user}} </p>
+      </div>
+    </div>
+  </div>
+  <div> 
+    <div style="margin-left: 40%;">
+      <table *ngIf="notification!=undefined" style="width:80%;color: white;">
+        <tr>
+          <th>Name</th>
+          <th>Count</th> 
+        </tr>
+        <tr *ngFor="let user of notification.data">
+          <td>{{user.user}}</td>
+          <td>{{user.count}}</td>       
+        </tr>
+       
+      </table>
+    </div>
+  </div>
 </div>
+
+
+
