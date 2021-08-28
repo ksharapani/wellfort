@@ -2,11 +2,15 @@ from django.db import models
 
 
 class User(models.Model):
+    objects = None
+
     name = models.CharField(max_length=512)
     pin_number = models.IntegerField()
 
 
 class Message(models.Model):
+    objects = None
+
     message_id = models.IntegerField()
     message = models.CharField(max_length=512)
 
