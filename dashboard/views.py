@@ -19,7 +19,8 @@ class Dashboard(APIView):
         output = {'status': 'failed', 'user': None, 'display_message': None, 'audio': None, 'data': queue_data}
         if data:
             output = {'user': data.clicked_user.name, 'status': 'successful',
-                      'display_message': data.display_message.message, 'audio': data.display_message.audio.url,
+                      'display_message': data.display_message.message,
+                      'audio': 'static/audio/{}.mp3'.format(data.display_message.id),
                       'data': queue_data}
             data.displayed = True
             data.save()
