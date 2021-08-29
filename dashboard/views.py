@@ -24,7 +24,7 @@ class Dashboard(APIView):
             audio.save("static/audio/message.mp3")
 
             output = {'user': data.clicked_user.name, 'status': 'successful',
-                      'display_message': data.display_message.message,
+                      'display_message': data.display_message.message.upper(),
                       'audio': 'static/audio/message.mp3',
                       'data': queue_data}
             data.displayed = True
