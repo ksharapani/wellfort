@@ -3,6 +3,10 @@
 # EXECUTION:
 # 'bash deployment_scripts/deploy'
 
+cd /var/www/wellfort
+
+supervisorctl -c /etc/supervisord.conf
+
 git pull
 
 sudo mkdir -p logs
