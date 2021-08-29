@@ -15,7 +15,6 @@ pip3 install -r requirements.txt
 
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 manage.py cron --name audio
 
 cp -r /var/www/wellfort/web/dist/wellfort/* /var/www/html/
 
