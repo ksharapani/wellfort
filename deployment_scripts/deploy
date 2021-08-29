@@ -14,7 +14,7 @@ sudo mkdir -p logs
 pip3 install -r requirements.txt
 
 python3 manage.py makemigrations
-
 python3 manage.py migrate
+python3 manage.py cron --name audio
 
 supervisorctl restart all
