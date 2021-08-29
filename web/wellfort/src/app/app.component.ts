@@ -22,9 +22,11 @@ export class AppComponent {
         this.notification = res;
         if (this.notification.audio != null) {
           let audio = new Audio();
-          audio.src = "http://localhost:8000" + this.notification.audio;
+         audio.src = "http://localhost:8000/" + this.notification.audio;
+ 
           audio.load();
           audio.play();
+          console.log("audio playing...")
         }
       })
     });
