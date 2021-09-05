@@ -21,7 +21,6 @@ con = sqlite3.connect('db.sqlite3')
 execute = con.execute('SELECT * FROM dashboard_message')
 messages = execute.fetchall()
 count = len(messages)
-print(messages)
 
 while True:
     random_number = random.randint(1, count)
@@ -31,7 +30,7 @@ while True:
         user = execute.fetchone()[0]
 
         con.execute('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, displayed) '
-                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, messages[random_number-1]))
+                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, messages[random_number-1][0]))
 
         con.commit()
 
