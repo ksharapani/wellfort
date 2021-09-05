@@ -44,3 +44,4 @@ while True:
 
         con.commit()
 
+    sleep(0.5)
