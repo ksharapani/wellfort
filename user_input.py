@@ -17,7 +17,7 @@ button_12 = Button(12)
 
 
 con = sqlite3.connect('db.sqlite3')
-execute = con.execute('SELECT count(*) FROM message')
+execute = con.execute('SELECT count(*) FROM dashboard_message')
 count = execute.fetchone()[0]
 print(count)
 
