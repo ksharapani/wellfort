@@ -24,7 +24,7 @@ count = len(messages)
 
 while True:
     random_number = random.randint(1, count)
-    if button_2.is_pressed():
+    if button_2.is_pressed:
         print('press 2')
         execute = con.execute('SELECT id FROM dashboard_user where pin_number=2')
         user = execute.fetchone()[0]
@@ -34,7 +34,7 @@ while True:
 
         con.commit()
 
-    if button_3.is_pressed():
+    if button_3.is_pressed:
         print('press 3')
         execute = con.execute('SELECT id FROM dashboard_user where pin_number=3')
         user = execute.fetchone()[0]
