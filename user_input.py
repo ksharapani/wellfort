@@ -1,6 +1,7 @@
+import sqlite3
+import random
 from time import sleep
 from datetime import datetime
-import sqlite3
 
 from gpiozero import Button
 button_2 = Button(2)
@@ -19,10 +20,10 @@ button_12 = Button(12)
 con = sqlite3.connect('db.sqlite3')
 execute = con.execute('SELECT count(*) FROM dashboard_message')
 count = execute.fetchone()[0]
-print(count)
 
 while True:
-
+    random_number = random.randint(1, count)
+    print(random_number)
     if button_2.wait_for_press():
         user = None
         message = None
