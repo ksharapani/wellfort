@@ -21,6 +21,7 @@ con = sqlite3.connect('db.sqlite3')
 execute = con.execute('SELECT * FROM dashboard_message')
 messages = execute.fetchall()
 count = len(messages)
+print(messages)
 
 while True:
     random_number = random.randint(1, count)
