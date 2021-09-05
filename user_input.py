@@ -23,7 +23,7 @@ messages = execute.fetchall()
 count = len(messages)
 
 while True:
-    random_number = random.randint(1, count)
+    random_number = random.randint(0, count)
     print(random_number)
     if button_2.wait_for_press():
         execute = con.execute('SELECT id FROM dashboard_user where pin_number=2')
