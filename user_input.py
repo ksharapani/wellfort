@@ -18,37 +18,20 @@ button_12 = Button(12)
 
 
 con = sqlite3.connect('db.sqlite3')
-execute = con.execute('SELECT count(*) FROM dashboard_message')
-count = execute.fetchone()[0]
+execute = con.execute('SELECT * FROM dashboard_message')
+messages = execute.fetchall()
+count = len(messages)
 
 while True:
     random_number = random.randint(1, count)
     print(random_number)
     if button_2.wait_for_press():
-        user = None
-        message = None
-        for row in con.execute('SELECT id FROM dashboard_user where pin_number=2'):
-            user = row[0]
-        for row in con.execute('SELECT id FROM dashboard_message where message_id=1'):
-            message = row[0]
+        execute = con.execute('SELECT id FROM dashboard_user where pin_number=2')
+        user = execute.fetchone()[0]
 
         con.execute('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, displayed) '
-                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, message))
+                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, messages[random_number]))
 
         con.commit()
-
-    if button_2.wait_for_press():
-        user = None
-        message = None
-        for row in con.execute('SELECT id FROM dashboard_user where pin_number=3'):
-            user = row[0]
-        for row in con.execute('SELECT id FROM dashboard_message where message_id=1'):
-            message = row[0]
-
-        con.execute('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, displayed) '
-                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, message))
-
-        con.commit()
-
 
     sleep(1)
