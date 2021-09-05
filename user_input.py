@@ -23,14 +23,14 @@ messages = execute.fetchall()
 count = len(messages)
 
 while True:
-    random_number = random.randint(0, count)
+    random_number = random.randint(1, count)
     print(random_number)
     if button_2.wait_for_press():
         execute = con.execute('SELECT id FROM dashboard_user where pin_number=2')
         user = execute.fetchone()[0]
 
         con.execute('INSERT INTO dashboard_queue(created_at, clicked_user_id, display_message_id, displayed) '
-                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, messages[random_number]))
+                    'VALUES ("{}", {}, {}, 0);'.format(datetime.now(), user, messages[random_number-1]))
 
         con.commit()
 
