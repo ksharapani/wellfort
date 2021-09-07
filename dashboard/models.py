@@ -14,7 +14,6 @@ class User(models.Model):
 class Message(models.Model):
     objects = None
 
-    message_id = models.IntegerField()
     message = models.CharField(max_length=512)
 
     def __str__(self):
