@@ -4,7 +4,7 @@
   <img class="img-div" src="../assets/imgs/wellfort.png">
 </div>
 <div  style="width: 100%;display: grid;grid-template-columns: auto auto auto">
-  <div></div>
+
   <div >
     <div *ngIf="notification!=undefined" style="align-items: center;">
       <div *ngIf="notification.status=='successful'" class="content-div">
@@ -14,8 +14,21 @@
     </div>
   </div>
   <div> 
-    <div style="margin-left: 20%;">
-      <table *ngIf="notification!=undefined" style="width:100%;color: white;">
+    <div *ngIf="notification.status=='successful'" style="margin-left: 20%;">
+      <table  style="width:100%;color: white;">
+        <tr>
+          <th>Name</th>
+          <th>Count</th> 
+        </tr>
+        <tr *ngFor="let user of notification.data">
+          <td>{{user.user}}</td>
+          <td>{{user.count}}</td>       
+        </tr>
+       
+      </table>
+    </div>
+    <div *ngIf="notification.status=='failed'">
+      <table  style="width:100%;color: white;">
         <tr>
           <th>Name</th>
           <th>Count</th> 
