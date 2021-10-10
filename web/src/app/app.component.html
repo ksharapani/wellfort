@@ -1,47 +1,33 @@
-<div bubblingText [position]="'right'"></div>
-<div bubblingText [position]="'left'"></div>
-<div style="align-items: center;">
-  <img class="img-div" src="../assets/imgs/wellfort.png">
-</div>
-<div  style="width: 100%;display: grid;grid-template-columns: auto auto auto">
-
-  <div >
-    <div *ngIf="notification!=undefined" style="align-items: center;">
-      <div *ngIf="notification.status=='successful'" class="content-div">
-        <p  class="content-para">{{notification.display_message}} </p>
-        <p  class="content-para">{{notification.user}} </p>
+<div>
+  <div style="align-items: center">
+    <img class="img-div" src="../assets/imgs/wellfort.ico" />
+  </div>
+  <div style="width: 100%">
+    <div style="width: 100%">
+      <div
+        *ngIf="notification != undefined"
+        style="align-items: center; width: 100%"
+      >
+        <div *ngIf="notification.status == 'successful'" class="content-div">
+          <p class="content-para">{{ notification.display_message }}</p>
+          <p class="content-para">{{ notification.user }}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="notification.status == 'failed'" style="text-align: center">
+        <table align="center" style="width: 60%; color: white">
+          <tr>
+            <th>Name</th>
+            <th>Count</th>
+          </tr>
+          <tr *ngFor="let user of notification.data">
+            <td>{{ user.user }}</td>
+            <td>{{ user.count }}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
-  <div> 
-    <!-- <div *ngIf="notification.status=='successful'" style="margin-left: 20%;">
-      <table  style="width:100%;color: white;">
-        <tr>
-          <th>Name</th>
-          <th>Count</th> 
-        </tr>
-        <tr *ngFor="let user of notification.data">
-          <td>{{user.user}}</td>
-          <td>{{user.count}}</td>       
-        </tr>
-       
-      </table>
-    </div> -->
-    <div *ngIf="notification.status=='failed'">
-      <table  style="width:100%;color: white;">
-        <tr>
-          <th>Name</th>
-          <th>Count</th> 
-        </tr>
-        <tr *ngFor="let user of notification.data">
-          <td>{{user.user}}</td>
-          <td>{{user.count}}</td>       
-        </tr>
-       
-      </table>
-    </div>
-  </div>
+  <div id="stars"></div>
 </div>
-
-
-
